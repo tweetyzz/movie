@@ -33,21 +33,18 @@ int main(int argc, char *argv[]) {
 	//1.3 read each movie data from the file and add it to the linked list
 	while (EOF!=fscanf(fp,"%s%s%d%f",name,country,runTime,score)/*수정한것 /* read name, country, runtime and score*/ )
 	{	
-	    mv_genmvInfo();
-	    
-	    
-	    //struct 
-	    
-	    /*fgetc(fp)
-	    movInfo_t()*/
-	    
+	   mv_genmvInfo(*name,score,runTime,*country);
+	   
+	   //깃허브 10장 문자열 하나씩 읽어오는 거 참고./ 
+	   
 	    
 	    //movInfo_t();
 	    //mv_genMvInfo()
 	    //구조체 만들기 movinfo이용, 와플 찍는곳 
 	    //mv_genMvInfo()
 	    //printf("%s",mv_genMvInfo);//새로 쓴거  
-		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
+
+	//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
     
@@ -103,7 +100,7 @@ int main(int argc, char *argv[]) {
 			    scanf("%f",&score);
 			    
 			    repFunc = mv_printCountry;
-				//arg = score;
+				arg = (int)score;
 				
 				break;
 				

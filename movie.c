@@ -50,6 +50,7 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
+	//printf("");
 	
 	//거르는 곳 
 }
@@ -66,6 +67,18 @@ int mv_printRunTime(void* obj, void* arg)
 
 int mv_printCountry(void* obj, void* arg)
 {
+	/*if(*arg->country == Korea)
+	{
+		printf("");
+	}
+	
+	else if(*arg->country == USA)
+	{
+		
+	}
+	
+	else if(*)
+*/
 	
 }
 
