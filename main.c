@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	
 	//1. reading the movie.dat-----------------------------
 	
-	fp=fopen("movie.dat","r");
+	fp=fopen("movie.dat.dat","r");
 	//1.1 FILE open
 	
 	
@@ -31,9 +31,10 @@ int main(int argc, char *argv[]) {
 	list = list_genList();
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while (EOF!=fscanf(fp,"%s%s%d%f",name,country,&runTime,&score)/*수정한것 /* read name, country, runtime and score*/ )
+	while (EOF != fscanf(fp,"%s%s%d%f",name,country,&runTime,&score)/*수정한것 /* read name, country, runtime and score*/ )
 	{	
 	   void* mvInfo= mv_genMvInfo(name,score,runTime,country);
+	   //printMv(mvInfo);
 	   list_addTail(mvInfo, list);
 	   
 	   //깃허브 10장 문자열 하나씩 읽어오는 거 참고./ 
@@ -74,6 +75,7 @@ int main(int argc, char *argv[]) {
 				
 				repFunc = mv_printAll;
 				arg = NULL;
+			
 				break;
 				
 			case 2: //print movies of specific country
@@ -114,7 +116,9 @@ int main(int argc, char *argv[]) {
 				break;
 		}
 		
-		list_repeatFunc(repFunc,arg,list); 
+		//list_repeatFunc(repFunc,arg,list); 
+		cnt=list_repeatFunc(repFunc,arg,list);
+		printf("\n  -totally %d movies are listed!\n\n\n",cnt);
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
 		//2.3 print number of movies
 	}

@@ -50,6 +50,10 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
+	printMv(obj);
+	printf("------------------------------------\n");
+	
+	return 1; 
 	//printf("");
 	
 	//거르는 곳 
