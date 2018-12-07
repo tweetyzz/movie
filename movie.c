@@ -12,9 +12,25 @@ typedef struct movInfo {
 } movInfo_t;
 
 void* mv_genMvInfo(char* name, float score, int runTime, char* country)
-{
+{   
+
+    
 	movInfo_t* mvPtr;
 	
+	mvPtr = (movInfo_t*)malloc(sizeof(movInfo_t));
+	
+	if(mvPtr == NULL)
+	{
+		printf("Error\n");
+		return NULL;
+	}
+	
+	mvPtr->country;
+	mvPtr->name;
+	mvPtr->runTime=runTime;
+	mvPtr->score=score;
+	
+	// malloc 써야함  동적메모리 할당.  
 	//allocate memory and set the member variables
 	
 	return (void*)mvPtr;
@@ -37,6 +53,7 @@ void printMv(void* obj)
 int mv_printAll(void* obj, void* arg)
 {
 	
+	//거르는 곳 
 }
 
 int mv_printScore(void* obj, void* arg)

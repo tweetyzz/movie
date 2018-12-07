@@ -31,9 +31,13 @@ int main(int argc, char *argv[]) {
 	list = list_genList();
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while (EOF!=fscanf(fp,"%s",name,country,runTime,score)/*수정한것 /* read name, country, runtime and score*/ )
+	while (EOF!=fscanf(fp,"%s%s%d%f",name,country,runTime,score)/*수정한것 /* read name, country, runtime and score*/ )
 	{	
-	    printf("%s",mv_genMvInfo);//새로 쓴거  
+	    //movInfo_t();
+	    //mv_genMvInfo()
+	    //구조체 만들기 movinfo이용
+	    //mv_genMvInfo()
+	    //printf("%s",mv_genMvInfo);//새로 쓴거  
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
@@ -68,15 +72,31 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 2: //print movies of specific country
+			    printf("\nselect a country : ");
+			    scanf("%s",&country);
+			    
+			    repFunc = mv_printScore;
+				arg = country; 
+			    
 			    
 
 				break;
 				
 			case 3: //print movies with long runtime
+			    printf("\nlowest runTime : ");
+			    scanf("%d",&runTime);
+			    
+			    repFunc = mv_printRunTime;
+				arg = runTime;
 
 				break;
 				
 			case 4: //print movies with high score
+			    printf("\nlowest score : ");
+			    scanf("%f",&score);
+			    
+			    repFunc = mv_printCountry;
+				arg = score;
 				
 				break;
 				
@@ -90,7 +110,7 @@ int main(int argc, char *argv[]) {
 				printf("wrong command! input again\n");
 				break;
 		}
-		
+		list_repeatFunc(repFunc,arg,list); 
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
 		//2.3 print number of movies
 	}
