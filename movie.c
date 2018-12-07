@@ -13,8 +13,6 @@ typedef struct movInfo {
 
 void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 {   
-
-    
 	movInfo_t* mvPtr;
 	
 	mvPtr = (movInfo_t*)malloc(sizeof(movInfo_t));
@@ -25,8 +23,8 @@ void* mv_genMvInfo(char* name, float score, int runTime, char* country)
 		return NULL;
 	}
 	
-	mvPtr->country;
-	mvPtr->name;
+	strcpy(mvPtr->madeIn,country);
+	strcpy(mvPtr->name,name);
 	mvPtr->runTime=runTime;
 	mvPtr->score=score;
 	
