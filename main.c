@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	
 	//1. reading the movie.dat-----------------------------
 	
-	fp=fopen("movie.dat.dat","r");
+	fp=fopen("movie.dat","r");
 	//1.1 FILE open
 	
 	
@@ -31,9 +31,10 @@ int main(int argc, char *argv[]) {
 	list = list_genList();
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while (EOF!=fscanf(fp,"%s%s%d%f",name,country,runTime,score)/*수정한것 /* read name, country, runtime and score*/ )
+	while (EOF!=fscanf(fp,"%s%s%d%f",name,country,&runTime,&score)/*수정한것 /* read name, country, runtime and score*/ )
 	{	
-	   mvInfo_t *mvInfo = mv_genmvInfo(*name,score,runTime,*country);
+	   void* mvInfo= mv_genMvInfo(name,score,runTime,country);
+	   list_addTail(mvInfo, list);
 	   
 	   //깃허브 10장 문자열 하나씩 읽어오는 거 참고./ 
 	    //movInfo_t();
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
 	    //printf("%s",mv_genMvInfo);//새로 쓴거  
 
 	//generate a movie info instance(mvInfo) with function mv_genMvInfo()
-		list_addTail(mvInfo, list);
+		
 	}
     
     fclose(fp);
@@ -89,7 +90,7 @@ int main(int argc, char *argv[]) {
 			    scanf("%d",&runTime);
 			    
 			    repFunc = mv_printRunTime;
-				arg = runTime;
+				arg = &runTime;
 
 				break;
 				
