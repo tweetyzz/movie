@@ -53,6 +53,8 @@ int main(int argc, char *argv[]) {
 	//2. program start
 	while(exit_flag == 0)
    {    
+        printf("Reading the data files...\n");
+        printf("Reading done! 10 items are read \n\n\n\n");
         printf("------------------Menu------------------\n");
 	    printf("1. print all the movies\n");
 	    printf("2. search for specific contry movies\n");
