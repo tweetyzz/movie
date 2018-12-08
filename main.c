@@ -42,7 +42,6 @@ int main(int argc, char *argv[]) {
 	    //mv_genMvInfo()
 	    //구조체 만들기 movinfo이용, 와플 찍는곳 
 	    //mv_genMvInfo()
-	    //printf("%s",mv_genMvInfo);//새로 쓴거  
 
 	//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		
@@ -82,7 +81,7 @@ int main(int argc, char *argv[]) {
 			    printf("\nselect a country : ");
 			    scanf("%s",&country);
 			    
-			    repFunc = mv_printScore;
+			    repFunc = mv_printCountry;
 				arg = country; 
 			    
 				break;
@@ -100,7 +99,7 @@ int main(int argc, char *argv[]) {
 			    printf("\nlowest score : ");
 			    scanf("%f",&score);
 			    
-			    repFunc = mv_printCountry;
+			    repFunc = mv_printScore;
 				arg = &score;
 				
 				break;
