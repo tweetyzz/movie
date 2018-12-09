@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	
 	//1. reading the movie.dat-----------------------------
 	
-	fp=fopen("movie.dat.dat","r"); //영화 정보가 들어있는 dat 파일을 읽어온다. 
+	fp=fopen("movie.dat","r"); //영화 정보가 들어있는 dat 파일을 읽어온다. 
 	//1.1 FILE open
 	
 	
@@ -32,24 +32,22 @@ int main(int argc, char *argv[]) {
 	
 	//1.3 read each movie data from the file and add it to the linked list
 	while (EOF != fscanf(fp,"%s%s%d%f",name,country,&runTime,&score)/* read name, country, runtime and score*/ )
-	{	//fscanf로 파일 속 정보들을 받는다.
+	{	//fscanf로 파일 속 정보들을 받는다. 
 	   
 	   void* mvInfo= mv_genMvInfo(name,score,runTime,country);
 	   //mv_genMvInfo 에 받은 정보를 넣는다. 
 	   list_addTail(mvInfo, list);// 리스트 꼬리(뒤)에 계속 리스트를 추가한다. 
 
-	//generate a movie info instance(mvInfo) with function mv_genMvInfo()
-		
 	}
     
-    fclose(fp);
-	//1.4 FILE close
+    fclose(fp); //파일 닫기. 
 	
-	//2. program start
-	while(exit_flag == 0)
+	
+	while(exit_flag == 0) //exit_flag가 1이 될때 까지 , 즉 option 중 5번을 선택하기 전까지 계속 반복함. 
    {    
         printf("Reading the data files...\n");
         printf("Reading done! 10 items are read \n\n\n\n");
+        
         printf("------------------Menu------------------\n");
 	    printf("1. print all the movies\n");
 	    printf("2. search for specific contry movies\n");
@@ -61,29 +59,32 @@ int main(int argc, char *argv[]) {
 	    printf("--select an option : ");
 	    scanf("%d",&option);
 
-		//2.1 print menu message and get input option
+		//메뉴판을 프린트 하고 option을 받는다.  
 		
-		switch(option)
+		switch(option) //선택한 번호에 따라 다른 정보 출력  
 		{
 			case 1: //print all the movies
+			
 				printf("\nprinting all the movies in the list.....\n\n\n");
 				printf("----------------------------------------\n");
 				
-				repFunc = mv_printAll; 
+				repFunc = mv_printAll;  // 모든 영화 정보  
 				arg = NULL; // 모든 영화 정보이기 때문에 특정 arg가 존재하지 않음. 
 			
 				break;
 				
 			case 2: //print movies of specific country
+			
 			    printf("\nselect a country : ");
 			    scanf("%s",&country);// 출력하고자 하는 나라의 정보를 입력받는다.  
 			    
-			    repFunc = mv_printCountry; //모든 영화 정보중 나라 정보만 따짐  
+			    repFunc = mv_printCountry; //모든 영화 정보 중 나라 정보만 따짐  
 				arg = country;// 입력받은 정보(arg)는 여기서 country가 됨. 
 			    
 				break;
 				
 			case 3: //print movies with long runtime
+			
 			    printf("\nlowest runTime : ");
 			    scanf("%d",&runTime);// 최소 상영시간을 입력받는다.  
 			    
@@ -93,8 +94,9 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 4: //print movies with high score
-			    printf("\nlowest score : ");
-			    scanf("%f",&score);
+			
+			    printf("\nlowest score : "); 
+			    scanf("%f",&score);// 최소 평점을 입력받는다.
 			    
 			    repFunc = mv_printScore; // 모든 영화 정보 중 평점에 대해서만 따짐  
 				arg = &score; //score는 float형으로 받아야 하므로 &연산자를 써준다.  
@@ -102,22 +104,22 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 5:
+				
 				printf("\n\nBye!\n\n");
 				exit_flag = 1; // 빠져나감. 
 				
 				break;
 				
 			default:
+				
 				printf("wrong command! input again\n"); // 1~5 밖의 숫자 선택 시 다시 선택하도록 함. 
 				break;
 		}
 		
-		//list_repeatFunc(repFunc,arg,list); 
-		cnt=list_repeatFunc(repFunc,arg,list); // list_repeatFunc은 각 리스트(각 영화)별로 반복하고 정보를 만족하는 영화만 거르는 것 이므로 cnt는 정보를 만족한 영화의 개수라고 할 수 있음. 
+		cnt=list_repeatFunc(repFunc,arg,list); // list_repeatFunc은 각 리스트(각 영화)별로 반복해서 정보를 만족하는 영화만 거르는 것 이므로 cnt는 정보를 만족한 영화의 개수라고 할 수 있음. 
 		printf("\n  -totally %d movies are listed!\n\n\n",cnt); // 정보와 일치하는 영화 개수(cnt)도 출력함. 
-		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
-		//2.3 print number of movies
+		
 	}
 	
-	return 0;
+	return 0; //0으로 반환해줌  
 }
