@@ -42,11 +42,11 @@ int main(int argc, char *argv[]) {
     
     fclose(fp); //파일 닫기. 
 	
+	printf("Reading the data files...\n");
+	printf("Reading done! 10 items are read \n\n\n\n"); // 총 몇 개의 영화 정보가 있는지 알려줌. 
 	
 	while(exit_flag == 0) //exit_flag가 1이 될때 까지 , 즉 option 중 5번을 선택하기 전까지 계속 반복함. 
    {    
-        printf("Reading the data files...\n");
-        printf("Reading done! 10 items are read \n\n\n\n");
         
         printf("------------------Menu------------------\n");
 	    printf("1. print all the movies\n");
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 	    printf("--select an option : ");
 	    scanf("%d",&option);
 
-		//메뉴판을 프린트 하고 option을 받는다.  
+		//메뉴를 프린트 하고 option을 받는다.  
 		
 		switch(option) //선택한 번호에 따라 다른 정보 출력  
 		{
